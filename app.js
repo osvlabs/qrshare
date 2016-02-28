@@ -19,13 +19,13 @@ if (!filePath) {
 var fileName = path.basename(filePath);
 var server = http.createServer(app).listen(0, address, () => {
   console.log(`The file is >> ${fileName} <<`);
-  console.log(`The url is http:\/\/${address}:${server.address().port}/${fileName}`);
-  qrcode.generate(`http:\/\/${address}:${server.address().port}/${fileName}`, code => {
+  console.log(`The url is http:\/\/${address}:${server.address().port}`);
+  qrcode.generate(`http:\/\/${address}:${server.address().port}`, code => {
     console.log(code);
   });
 });
 
-app.get(`/${fileName}`, (req, res, next) => {
+app.get('/', (req, res, next) => {
   res.download(filePath, fileName, (err) => {
     if (err) {
       console.log('Cant find the file!');

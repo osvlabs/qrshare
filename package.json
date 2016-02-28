@@ -1,6 +1,6 @@
 {
   "name": "qrshare",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "share file via qr-image in terminal",
   "main": "./app.js",
   "bin": {
