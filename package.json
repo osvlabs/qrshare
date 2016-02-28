@@ -1,0 +1,28 @@
+{
+  "name": "qrshare",
+  "version": "0.0.1",
+  "description": "share file via qr-image in terminal",
+  "main": "./app.js",
+  "bin": {
+    "qrshare": "app.js"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "preferGlobal": "true",
+  "author": "hosn",
+  "license": "MIT",
+  "keywords": ["share file", "qr-image"],
+  "engines": {
+    "node": "^4.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hosn/qrshare"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "qrcode-terminal": "^0.10.0"
+  },
+  "devDependencies": {}
+}
