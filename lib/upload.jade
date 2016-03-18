@@ -1,0 +1,155 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    title Download
+    style.
+      .file-content {
+        width: 200px;
+        height: 200px;
+        background-color: #E5E5E5;
+        position: relative;
+        margin: 50px auto 0;
+        border: 4px dashed #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .file-content span {
+        width: 160px;
+        font-size: 1.2em;
+        word-wrap: break-word;
+        color: #222;
+        text-align: center;
+      }
+      form {
+        display: none;
+      }
+      .progress-pie-chart {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: #E5E5E5;
+        position: relative;
+        display: none;
+      }
+      .progress-pie-chart.gt-50 {
+        background-color: #81CE97;
+      }
+      .ppc-progress {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        left: calc(50% - 100px);
+        top: calc(50% - 100px);
+        width: 200px;
+        height: 200px;
+        clip: rect(0, 200px, 200px, 100px);
+      }
+      .ppc-progress .ppc-progress-fill {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        left: calc(50% - 100px);
+        top: calc(50% - 100px);
+        width: 200px;
+        height: 200px;
+        clip: rect(0, 100px, 200px, 0);
+        background: #81CE97;
+      }
+      .gt-50 .ppc-progress {
+        clip: rect(0, 100px, 200px, 0);
+      }
+      .gt-50 .ppc-progress .ppc-progress-fill {
+        clip: rect(0, 200px, 200px, 100px);
+        background: #E5E5E5;
+      }
+      .ppc-percents {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        left: calc(50% - 173.91304px/2);
+        top: calc(50% - 173.91304px/2);
+        width: 173.91304px;
+        height: 173.91304px;
+        background: #fff;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .ppc-percents span {
+        display: block;
+        font-size: 2.6em;
+        font-weight: bold;
+        color: #81CE97;
+      }
+      body {
+        font-family: Arial;
+        background: #f7f7f7;
+      }
+      .progress-pie-chart {
+        margin: 50px auto 0;
+      }
+      .upload {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 50px auto 0;
+      }
+      #upload {
+        border: none;
+        border-radius: 5px;
+        background-color: #81ce97;
+        color: #222;
+        font-size: 1.2em;
+        width: 120px;
+        height: 50px;
+      }
+  body
+    .file-content
+      span Choose File
+      form(id="form", method="post", enctype="multipart/form-data")
+       input(type="file", id="file", name="file")
+    .progress-pie-chart
+      .ppc-progress
+        .ppc-progress-fill
+      .ppc-percents
+        .ppc-percents-wrapper
+          span %
+    .upload
+      button(id="upload") Upload
+    script.
+      var ppc = document.querySelector('.progress-pie-chart');
+      var form = document.querySelector('.file-content');
+      var btn = document.querySelector('#upload');
+      var file = document.querySelector('#file');
+      var span = document.querySelector('.ppc-percents-wrapper span');
+      var fill = document.querySelector('.ppc-progress-fill');
+      form.addEventListener('click', function(evt) {
+        file.click();
+      }, false);
+      file.onchange = function(evt) {
+        form.querySelector('span').innerHTML = file.files[0].name;
+      };
+      btn.addEventListener('click', function(evt) {
+        if (!file.files.length) return evt.preventDefault();
+        var data = new FormData(document.querySelector('form'));
+        var xhr = new XMLHttpRequest();
+        form.style.display = 'none';
+        ppc.style.display = 'flex';
+        xhr.open('post', '/');
+        xhr.onload = function() {
+          btn.style.display = 'none';
+        };
+        xhr.upload.onprogress = function(evt) {
+          var cur = parseInt(evt.loaded / evt.total * 100);
+          var deg = cur * 360 / 100;
+          if (cur > 50) ppc.classList.add('gt-50');
+          span.innerHTML = cur + '%';
+          fill.style.transform = 'rotate(' + deg + 'deg)';
+        };
+        xhr.send(data);
+      });

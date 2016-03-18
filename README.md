@@ -11,4 +11,8 @@ $ npm install qrshare -g
 ```bash
 $ qrshare <file_path>
 ```
-然后用手机扫描二维码即可下载文件.
+用手机扫描二维码即可下载文件.
+```bash
+$ qrshare
+```
+扫描二维码打开浏览器，选择文件上传，文件会保存在当前目录下.
