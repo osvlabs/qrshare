@@ -1,6 +1,6 @@
 {
   "name": "qrshare",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "share file via qr-image in terminal",
   "main": "./app.js",
   "bin": {
@@ -25,7 +25,8 @@
     "qrcode-terminal": "^0.10.0",
     "my-ip": "^1.1.1",
     "progress": "^1.1.8",
-    "formidable": "^1.0.17"
+    "formidable": "^1.0.17",
+    "jade": "^1.11.0"
   },
   "devDependencies": {}
 }
