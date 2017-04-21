@@ -1,5 +1,7 @@
 # 局域网下共享文件的小工具
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/halsn/qrshare.svg)](https://greenkeeper.io/)
+
 ## 安装
 
 ```bash
