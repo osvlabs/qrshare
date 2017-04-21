@@ -22,9 +22,9 @@
   },
   "dependencies": {
     "express": "^4.13.3",
-    "qrcode-terminal": "^0.10.0",
+    "qrcode-terminal": "^0.11.0",
     "my-ip": "^1.1.1",
-    "progress": "^1.1.8",
+    "progress": "^2.0.0",
     "formidable": "^1.0.17",
     "jade": "^1.11.0"
   },
